@@ -11,7 +11,8 @@ function App(){
       .then(res => res.json())
       .then((data) => {
           setAdvice(data.slip);
-      });
+      })
+      .catch(() => setAdvice({"id": 1, "advice": "Hello World"}));
   }
   
   useEffect(() => {
@@ -20,6 +21,7 @@ function App(){
       .then((data) => {
           setAdvice(data.slip);
       })
+      .catch(() => setAdvice({"id": 1, "advice": "Hello World"}));
   });
 
   return (

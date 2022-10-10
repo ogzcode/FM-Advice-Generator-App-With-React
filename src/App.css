@@ -38,6 +38,9 @@
     background-color: var(--Neon-Green);
     transition: .2s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn:hover {
