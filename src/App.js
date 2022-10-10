@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import dice from "./img/icon-dice.svg";
+import divider from "./img/pattern-divider-desktop.svg";
 
-function App() {
+function App(){
+  const [advice, setAdvice] = useState(0);
+
+  function handleClick(){
+    fetch("https://api.adviceslip.com/advice")
+      .then(res => res.json())
+      .then((data) => {
+          setAdvice(data.slip);
+      });
+  }
+  
+  useEffect(() => {
+    fetch("https://api.adviceslip.com/advice")
+      .then(res => res.json())
+      .then((data) => {
+          setAdvice(data.slip);
+      })
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <p className='header'>Advice #{advice.id}</p>
+      <p className='advice'>"{advice.advice}"</p>
+      <img src={divider} className="divider" alt='This is divider'/>
+      <button className='btn' onClick={() => handleClick()}>
+        <img src={dice} alt="This is button"/>
+      </button>
     </div>
   );
 }
