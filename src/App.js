@@ -22,7 +22,7 @@ function App(){
           setAdvice(data.slip);
       })
       .catch(() => setAdvice({"id": 1, "advice": "Hello World"}));
-  });
+  }, []);
 
   return (
     <div className='container'>
